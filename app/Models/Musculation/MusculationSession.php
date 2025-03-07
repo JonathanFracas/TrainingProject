@@ -3,13 +3,13 @@
 namespace App\Models\Musculation;
 
 use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * --- CHAMPS BASE DE DONNEES ---
+ *
  * @property int $id -.
  * @property int $session_number -.
  * @property Carbon $date -.
@@ -21,26 +21,29 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class MusculationSession extends Model
 {
-	protected $table = "musculation_sessions";
-	protected $primaryKey = "id";
-	public $incrementing = false;
-	protected $keyType = "integer";
-	public $timestamps = false;
+    protected $table = 'musculation_sessions';
 
-	protected $guarded = ['id'];
+    protected $primaryKey = 'id';
 
-	protected $casts = [
-		'date' => 'date',
-	];
+    public $incrementing = false;
 
-	public function exercises(): HasMany
-	{
-		return $this->hasMany(MusculationSessionExercise::class, "session_number", "session_number");
-	}
+    protected $keyType = 'integer';
 
-	public function body_part(): BelongsTo
-	{
-		return $this->belongsTo(BodyPartType::class, "body_part_id", "id");
-	}
+    public $timestamps = false;
 
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'date' => 'date',
+    ];
+
+    public function exercises(): HasMany
+    {
+        return $this->hasMany(MusculationSessionExercise::class, 'session_number', 'session_number');
+    }
+
+    public function body_part(): BelongsTo
+    {
+        return $this->belongsTo(BodyPartType::class, 'body_part_id', 'id');
+    }
 }

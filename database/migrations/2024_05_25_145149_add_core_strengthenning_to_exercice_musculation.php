@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('musculation_sessions', function (Blueprint $table) {
-            $table->integer("core_strengthening")->nullable();
+            $table->integer('core_strengthening')->nullable();
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('musculation_sessions', function (Blueprint $table) {
-            $table->dropColumn("core_strengthening");
+            $table->dropColumn('core_strengthening');
         });
     }
 };

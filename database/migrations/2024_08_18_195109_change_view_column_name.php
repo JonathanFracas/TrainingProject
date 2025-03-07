@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -12,10 +10,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-			DB::statement("DROP VIEW if exists last_musculations_session");
+        DB::statement('DROP VIEW if exists last_musculations_session');
 
-			DB::statement(
-				"CREATE VIEW last_musculations_session AS
+        DB::statement(
+            'CREATE VIEW last_musculations_session AS
         SELECT
             bpt.id AS body_part_id,
             COALESCE(MAX(ms.session_number), 0) AS last_session_number,
@@ -27,8 +25,8 @@ return new class extends Migration
             body_parts_types bpt
         LEFT JOIN musculation_sessions ms ON ms.body_part_id = bpt.id
         GROUP BY
-            bpt.id;"
-			);
+            bpt.id;'
+        );
     }
 
     /**

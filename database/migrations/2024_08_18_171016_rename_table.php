@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -11,7 +10,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::rename("musculation_sessions", "musculation_sessions_exercises");
+        Schema::rename('musculation_sessions', 'musculation_sessions_exercises');
     }
 
     /**

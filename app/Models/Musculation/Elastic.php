@@ -7,19 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * --- CHAMPS BASE DE DONNEES ---
+ *
  * @property string $id - .
  * @property string $color - .
  */
 class Elastic extends Model
 {
-  use HasFactory;
+    use HasFactory;
 
-	protected $table = "elastics";
-	protected $primaryKey = "id";
-	public $incrementing = true;
-	protected $keyType = "int";
-	public $timestamps = false;
+    protected $table = 'elastics';
 
-	protected $guarded = ['id'];
+    protected $primaryKey = 'id';
 
+    public $incrementing = true;
+
+    protected $keyType = 'int';
+
+    public $timestamps = false;
+
+    protected $guarded = ['id'];
 }

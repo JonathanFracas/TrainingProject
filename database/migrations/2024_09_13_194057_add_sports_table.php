@@ -11,21 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::create("sports_types", function (Blueprint $table) {
-				$table->id()->index();
-				$table->string("label");
-			});
+        Schema::create('sports_types', function (Blueprint $table) {
+            $table->id()->index();
+            $table->string('label');
+        });
 
-			Schema::create("sports_sessions", function (Blueprint $table) {
-				$table->id()->index();
-				$table->date("date");
-				$table->decimal("time");
+        Schema::create('sports_sessions', function (Blueprint $table) {
+            $table->id()->index();
+            $table->date('date');
+            $table->decimal('time');
 
-				$table->unsignedBigInteger("sport_type_id");
+            $table->unsignedBigInteger('sport_type_id');
 
-				$table->foreign("sport_type_id")
-					->references("id")->on("sports_types");
-			});
+            $table->foreign('sport_type_id')
+                ->references('id')->on('sports_types');
+        });
     }
 
     /**

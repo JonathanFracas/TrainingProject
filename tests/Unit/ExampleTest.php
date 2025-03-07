@@ -9,10 +9,10 @@ class ExampleTest extends TestCase
     /**
      * A basic test example.
      */
-     public function AjoutPointsDifferent(): void
-   {
-       $this->assertTrue(true);
-   }
+    public function AjoutPointsDifferent(): void
+    {
+        $this->assertTrue(true);
+    }
 
     public function AjoutPointMemeValeur(): void
     {

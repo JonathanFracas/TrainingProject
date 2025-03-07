@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::table('flash_sessions_exercises', function (Blueprint $table) {
-				$table->integer("repeat");
-			});
+        Schema::table('flash_sessions_exercises', function (Blueprint $table) {
+            $table->integer('repeat');
+        });
     }
 
     /**

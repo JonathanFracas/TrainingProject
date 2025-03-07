@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::table("flash_sessions", function (Blueprint $table) {
-				$table->addColumn("date","date")->useCurrent();
-			});
-		}
+        Schema::table('flash_sessions', function (Blueprint $table) {
+            $table->addColumn('date', 'date')->useCurrent();
+        });
+    }
 
     /**
      * Reverse the migrations.

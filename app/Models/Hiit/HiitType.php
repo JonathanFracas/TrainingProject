@@ -7,21 +7,27 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * --- CHAMPS BASE DE DONNEES ---
+ *
  * @property int $id -.
  * @property string $label -.
  */
 class HiitType extends Model
 {
-	use HasFactory;
-	protected $table = "hiits_types";
-	protected $primaryKey = "id";
-	public $incrementing = false;
-	protected $keyType = "integer";
-	public $timestamps = false;
+    use HasFactory;
 
-	protected $guarded = ['id'];
+    protected $table = 'hiits_types';
 
-	protected $casts = [
-		'date' => 'date',
-	];
+    protected $primaryKey = 'id';
+
+    public $incrementing = false;
+
+    protected $keyType = 'integer';
+
+    public $timestamps = false;
+
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'date' => 'date',
+    ];
 }

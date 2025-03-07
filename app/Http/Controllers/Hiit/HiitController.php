@@ -9,20 +9,20 @@ use Illuminate\Http\Request;
 
 class HiitController extends Controller
 {
-	public function getHiitTypes()
-	{
-		return HiitType::all();
-	}
+    public function getHiitTypes()
+    {
+        return HiitType::all();
+    }
 
-	public function saveHiitType(Request $request)
-	{
-		$hiitType = new HiitType($request->input());
-		$hiitType->save();
-	}
+    public function saveHiitType(Request $request)
+    {
+        $hiitType = new HiitType($request->input());
+        $hiitType->save();
+    }
 
-	public function saveHiitSession(Request $request)
-	{
-		$hiitSession = new HiitSession(($request->input()));
-		$hiitSession->save();
-	}
+    public function saveHiitSession(Request $request)
+    {
+        $hiitSession = new HiitSession(($request->input()));
+        $hiitSession->save();
+    }
 }

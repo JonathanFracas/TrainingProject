@@ -12,78 +12,77 @@ use Illuminate\Http\Request;
 
 class MusculationSessionsController extends Controller
 {
+    public function save(Request $request)
+    {
+        /**
+         * @var MusculationSessionExercise $lastSession
+         */
+        $lastSession = MusculationSession::query()->orderBy('id', 'DESC')->first();
 
-	public function save(Request $request)
-	{
-		/**
-		 * @var MusculationSessionExercise $lastSession
-		 */
-		$lastSession = MusculationSession::query()->orderBy("id","DESC")->first();
+        if (empty($lastSession)) {
+            $sessionNumber = 1;
+        } else {
+            $sessionNumber = $lastSession->session_number + 1;
+        }
 
-		if(empty($lastSession))
-			$sessionNumber = 1;
-		else
-			$sessionNumber = $lastSession->session_number + 1;
+        $sessions = ($request->collect())['session'];
+        $date = ($request->collect())['date'];
+        $body_part_id = ($request->collect())['body_part_id'];
 
-		$sessions = ($request->collect())["session"];
-		$date = ($request->collect())["date"];
-		$body_part_id = ($request->collect())["body_part_id"];
+        $musculationSession = new MusculationSession;
+        $musculationSession->date = new Carbon($date);
+        $musculationSession->session_number = $sessionNumber;
+        $musculationSession->body_part_id = $body_part_id;
 
-		$musculationSession = new MusculationSession();
-		$musculationSession->date = new Carbon($date);
-		$musculationSession->session_number = $sessionNumber;
-		$musculationSession->body_part_id = $body_part_id;
+        $musculationSession->save();
 
-		$musculationSession->save();
+        foreach ($sessions as $session) {
+            $musculationSessionExercise = new MusculationSessionExercise($session);
+            $musculationSessionExercise->session_number = $sessionNumber;
 
-		foreach ($sessions as $session)
-		{
-			$musculationSessionExercise = new MusculationSessionExercise($session);
-			$musculationSessionExercise->session_number = $sessionNumber;
+            $musculationSessionExercise->save();
+        }
+    }
 
-			$musculationSessionExercise->save();
-		}
-	}
+    public function copyLastSession(string $body_part_id)
+    {
+        /**
+         * @var LastMusculationsSession $last_session_number
+         */
+        $last_session_number = LastMusculationsSession::query()
+            ->where('body_part_id', '=', $body_part_id)
+            ->first();
 
-	public function copyLastSession(string $body_part_id)
-	{
-		/**
-		 * @var LastMusculationsSession $last_session_number
-		 */
-		$last_session_number = LastMusculationsSession::query()
-			->where("body_part_id", "=", $body_part_id)
-			->first();
+        /**
+         * @var MusculationSessionExercise $last_musculation_session
+         */
+        $last_musculation_session = MusculationSessionExercise::query()
+            ->with('musculation_exercise')
+            ->where('session_number', '=', $last_session_number->last_session_number)
+            ->get();
 
-		/**
-		 * @var MusculationSessionExercise $last_musculation_session
-		 */
-		$last_musculation_session = MusculationSessionExercise::query()
-			->with("musculation_exercise")
-			->where("session_number", "=", $last_session_number->last_session_number)
-			->get();
+        return $last_musculation_session;
+    }
 
-		return $last_musculation_session;
-	}
+    public function copyBySessionNumber(int $sessionNumber)
+    {
+        /**
+         * @var MusculationSession $musculationSession
+         */
+        $musculationSession = MusculationSession::query()
+            ->where('session_number', '=', $sessionNumber)
+            ->first();
 
-	public function copyBySessionNumber(int $sessionNumber)
-	{
-		/**
-		 * @var MusculationSession $musculationSession
-		 */
-		$musculationSession = MusculationSession::query()
-			->where("session_number", "=", $sessionNumber)
-			->first();
+        $bodyPart = BodyPartType::query()->find($musculationSession->body_part_id);
 
-		$bodyPart = BodyPartType::query()->find($musculationSession->body_part_id);
+        $exercises = MusculationSessionExercise::query()
+            ->with('musculation_exercise')
+            ->where('session_number', '=', $sessionNumber)
+            ->get();
 
-		$exercises = MusculationSessionExercise::query()
-			->with("musculation_exercise")
-			->where("session_number", "=", $sessionNumber)
-			->get();
-
-		return (object) [
-			"exercises" => $exercises,
-			"body_part" => $bodyPart
-		];
-	}
+        return (object) [
+            'exercises' => $exercises,
+            'body_part' => $bodyPart,
+        ];
+    }
 }

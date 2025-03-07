@@ -7,9 +7,8 @@ use App\Models\Musculation\ExerciseType;
 
 class ExerciseTypesController extends Controller
 {
-
-	public function get()
-	{
-		return ExerciseType::all();
-	}
+    public function get()
+    {
+        return ExerciseType::all();
+    }
 }

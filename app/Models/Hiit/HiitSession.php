@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-
 /**
  * --- CHAMPS BASE DE DONNEES ---
+ *
  * @property int $id -.
  * @property float $timer -.
  * @property int $repeats -.
@@ -23,21 +23,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class HiitSession extends Model
 {
-	use HasFactory;
-	protected $table = "hiits_sessions";
-	protected $primaryKey = "id";
-	public $incrementing = false;
-	protected $keyType = "integer";
-	public $timestamps = false;
+    use HasFactory;
 
-	protected $guarded = ['id'];
+    protected $table = 'hiits_sessions';
 
-	protected $casts = [
-		'date' => 'date',
-	];
+    protected $primaryKey = 'id';
 
-	public function hiit_type(): BelongsTo
-	{
-		return $this->belongsTo(HiitType::class, "hiit_type_id", "id");
-	}
+    public $incrementing = false;
+
+    protected $keyType = 'integer';
+
+    public $timestamps = false;
+
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'date' => 'date',
+    ];
+
+    public function hiit_type(): BelongsTo
+    {
+        return $this->belongsTo(HiitType::class, 'hiit_type_id', 'id');
+    }
 }

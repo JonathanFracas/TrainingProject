@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,12 +18,10 @@ use Illuminate\Support\Facades\Route;
  */
 Route::get('bodyPart/get', 'App\Http\Controllers\Musculation\BodyPartsController@get');
 
-
 /**
  * EXERCISETYPESCONTROLLER
  */
 Route::get('exerciseTypes/get', 'App\Http\Controllers\Musculation\ExerciseTypesController@get');
-
 
 /**
  * MUSCULATIONEXERCISECONTROLLER
@@ -74,7 +71,6 @@ Route::get('historic/getSessionsByDay', 'App\Http\Controllers\Historic\SessionsH
 Route::get('hiit/getHiitTypes', 'App\Http\Controllers\Hiit\HiitController@getHiitTypes');
 Route::post('hiit/saveHiitType/{newHiitType}', 'App\Http\Controllers\Hiit\HiitController@saveHiitType');
 Route::post('hiit/saveHiitSession/{newHiitSession}', 'App\Http\Controllers\Hiit\HiitController@saveHiitSession');
-
 
 /**
  * SPORTCONTROLLER

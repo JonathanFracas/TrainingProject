@@ -12,31 +12,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::table("musculation_exercises", function (Blueprint $table) {
-				$table->addColumn("boolean","elastic")->default(false);
-				$table->addColumn("boolean","core_strengthening")->default(false);
-			});
+        Schema::table('musculation_exercises', function (Blueprint $table) {
+            $table->addColumn('boolean', 'elastic')->default(false);
+            $table->addColumn('boolean', 'core_strengthening')->default(false);
+        });
 
-			DB::table('musculation_exercises')
-				->where("weight", "=", false)
-				->where("name", "!=", "Gainage")
-				->update([
-					"elastic" => true,
-				]);
+        DB::table('musculation_exercises')
+            ->where('weight', '=', false)
+            ->where('name', '!=', 'Gainage')
+            ->update([
+                'elastic' => true,
+            ]);
 
-			DB::table('musculation_exercises')
-				->where("name", "=", "Gainage")
-				->update([
-					"core_strengthening" => true,
-				]);
+        DB::table('musculation_exercises')
+            ->where('name', '=', 'Gainage')
+            ->update([
+                'core_strengthening' => true,
+            ]);
     }
-
 
     /**
      * Reverse the migrations.
      */
-    public function down(): void
-    {
-
-    }
+    public function down(): void {}
 };

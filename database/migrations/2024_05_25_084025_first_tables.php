@@ -11,39 +11,39 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::create("body_parts_types", function (Blueprint $table) {
-				$table->string("id")->primary();
-				$table->string("label");
-			});
+        Schema::create('body_parts_types', function (Blueprint $table) {
+            $table->string('id')->primary();
+            $table->string('label');
+        });
 
-			Schema::create("musculation_exercises", function (Blueprint $table) {
-				$table->id();
-				$table->string("name");
-				$table->string("body_part_id");
-				$table->boolean("weight");
+        Schema::create('musculation_exercises', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('body_part_id');
+            $table->boolean('weight');
 
-				$table->foreign("body_part_id")
-					->references("id")->on("body_parts_types");
-			});
+            $table->foreign('body_part_id')
+                ->references('id')->on('body_parts_types');
+        });
 
-			Schema::create("flash_exercises", function (Blueprint $table) {
-				$table->id();
-				$table->string("name");
-			});
+        Schema::create('flash_exercises', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+        });
 
-			Schema::create("musculation_sessions", function (Blueprint $table) {
-				$table->id();
-				$table->integer("session_number");
-				$table->unsignedBigInteger("musculation_exercise_id");
-				$table->integer("series");
-				$table->integer("repeats");
-				$table->decimal("weight")->nullable();
-				$table->string("elastic")->nullable();
-				$table->date("date");
+        Schema::create('musculation_sessions', function (Blueprint $table) {
+            $table->id();
+            $table->integer('session_number');
+            $table->unsignedBigInteger('musculation_exercise_id');
+            $table->integer('series');
+            $table->integer('repeats');
+            $table->decimal('weight')->nullable();
+            $table->string('elastic')->nullable();
+            $table->date('date');
 
-				$table->foreign("musculation_exercise_id")
-					->references("id")->on("musculation_exercises");
-			});
+            $table->foreign('musculation_exercise_id')
+                ->references('id')->on('musculation_exercises');
+        });
     }
 
     /**
@@ -51,10 +51,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-			Schema::dropIfExists("musculation_sessions");
-			Schema::dropIfExists("flash_exercises");
-			Schema::dropIfExists("musculation_exercises");
-			Schema::dropIfExists("body_parts_types");
+        Schema::dropIfExists('musculation_sessions');
+        Schema::dropIfExists('flash_exercises');
+        Schema::dropIfExists('musculation_exercises');
+        Schema::dropIfExists('body_parts_types');
 
-		}
+    }
 };

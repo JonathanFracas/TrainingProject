@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("bike_sessions", function (Blueprint $table) {
+        Schema::create('bike_sessions', function (Blueprint $table) {
             $table->id()->index();
-						$table->decimal("kms");
-						$table->decimal("time");
-						$table->date("date");
+            $table->decimal('kms');
+            $table->decimal('time');
+            $table->date('date');
         });
     }
 

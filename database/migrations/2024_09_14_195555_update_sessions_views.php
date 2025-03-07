@@ -1,9 +1,7 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -12,8 +10,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-			DB::statement(
-				"CREATE OR REPLACE VIEW sessions_view AS
+        DB::statement(
+            "CREATE OR REPLACE VIEW sessions_view AS
 				SELECT session_number, date, 'musculation' as type, body_part_id FROM musculation_sessions
 				UNION ALL
 				SELECT id, date, 'running' as type, null as body_part_id FROM running_sessions
@@ -26,7 +24,7 @@ return new class extends Migration
         UNION ALL
 				SELECT id, date, 'hiit' as type, null as body_part_id FROM hiits_sessions
 				;"
-			);
+        );
     }
 
     /**

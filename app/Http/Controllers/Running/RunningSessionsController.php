@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class RunningSessionsController extends Controller
 {
-	public function save(Request $request)
-	{
-		$runningSession = new RunningSession(($request->input()));
-		$runningSession->save();
-  }
+    public function save(Request $request)
+    {
+        $runningSession = new RunningSession(($request->input()));
+        $runningSession->save();
+    }
 }

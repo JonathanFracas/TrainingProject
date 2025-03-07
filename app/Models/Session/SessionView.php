@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
  * VUE
  *
  * --- CHAMPS BASE DE DONNEES ---
+ *
  * @property-read string $body_part_id;
  * @property-read string $type;
  * @property-read int $session_number;
@@ -16,10 +17,11 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SessionView extends Model
 {
-	public $timestamps = false;
-	protected $table = 'sessions_view';
+    public $timestamps = false;
 
-	protected $casts = [
-		'date' => 'date',
-	];
+    protected $table = 'sessions_view';
+
+    protected $casts = [
+        'date' => 'date',
+    ];
 }

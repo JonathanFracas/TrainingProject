@@ -18,11 +18,11 @@ class ExampleTest extends TestCase
         $response->assertStatus(200);
     }
 
-	public function test_query_where_return_null(): void
-	{
-		$game = Game::query()->where("name","=","kfhfv")
-			->first();
+    public function test_query_where_return_null(): void
+    {
+        $game = Game::query()->where('name', '=', 'kfhfv')
+            ->first();
 
-		$this->assertNull($game);
-	}
+        $this->assertNull($game);
+    }
 }

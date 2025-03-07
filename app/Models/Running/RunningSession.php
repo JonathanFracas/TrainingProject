@@ -8,48 +8,51 @@ use Illuminate\Database\Eloquent\Model;
 use Seld\PharUtils\Timestamps;
 
 /**
- *
  * --- CHAMPS BASE DE DONNEES ---
+ *
  * @property int $id -.
- * @property double $kms -.
- * @property double $time -.
+ * @property float $kms -.
+ * @property float $time -.
  * @property timestamps $date -.
  *
  * --- ATTRIBUTS VIRTUELS ---
- * @property-read double $speed -.
- * @property-read double $pace -.
+ * @property-read float $speed -.
+ * @property-read float $pace -.
  */
 class RunningSession extends Model
 {
-  use HasFactory;
-	protected $table = "running_sessions";
-	protected $primaryKey = "id";
-	public $incrementing = false;
-	protected $keyType = "integer";
-	public $timestamps = false;
+    use HasFactory;
 
-	protected $guarded = ['id'];
+    protected $table = 'running_sessions';
 
-	protected $casts = [
-		'date' => 'date',
-	];
+    protected $primaryKey = 'id';
 
-	protected $appends = [
-		"speed", "pace"
-	];
+    public $incrementing = false;
 
+    protected $keyType = 'integer';
 
-	/**
-	 * Attributs virtuels
-	 */
+    public $timestamps = false;
 
-	public function getSpeedAttribute()
-	{
-		return Utils::getSpeed($this->kms, $this->time);
-	}
+    protected $guarded = ['id'];
 
-	public function getPaceAttribute()
-	{
-		return Utils::getPace($this->kms, $this->time);
-	}
+    protected $casts = [
+        'date' => 'date',
+    ];
+
+    protected $appends = [
+        'speed', 'pace',
+    ];
+
+    /**
+     * Attributs virtuels
+     */
+    public function getSpeedAttribute()
+    {
+        return Utils::getSpeed($this->kms, $this->time);
+    }
+
+    public function getPaceAttribute()
+    {
+        return Utils::getPace($this->kms, $this->time);
+    }
 }

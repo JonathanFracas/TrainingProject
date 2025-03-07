@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * --- CHAMPS BASE DE DONNEES ---
+ *
  * @property int $id -.
  * @property Carbon $date -.
  * @property float $time -.
@@ -19,21 +20,26 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class SportSession extends Model
 {
-	use HasFactory;
-	protected $table = "sports_sessions";
-	protected $primaryKey = "id";
-	public $incrementing = false;
-	protected $keyType = "integer";
-	public $timestamps = false;
+    use HasFactory;
 
-	protected $guarded = ['id'];
+    protected $table = 'sports_sessions';
 
-	protected $casts = [
-		'date' => 'date',
-	];
+    protected $primaryKey = 'id';
 
-	public function sport_type(): BelongsTo
-	{
-		return $this->belongsTo(SportType::class,"sport_type_id", "id");
-	}
+    public $incrementing = false;
+
+    protected $keyType = 'integer';
+
+    public $timestamps = false;
+
+    protected $guarded = ['id'];
+
+    protected $casts = [
+        'date' => 'date',
+    ];
+
+    public function sport_type(): BelongsTo
+    {
+        return $this->belongsTo(SportType::class, 'sport_type_id', 'id');
+    }
 }

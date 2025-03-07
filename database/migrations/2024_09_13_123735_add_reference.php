@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::table("musculation_sessions_exercises", function(Blueprint $table)
-			{
-				$table->foreign("elastic")
-					->references("color")->on("elastics")
-					->onUpdate('cascade')
-					->onDelete('set null');
-			});
+        Schema::table('musculation_sessions_exercises', function (Blueprint $table) {
+            $table->foreign('elastic')
+                ->references('color')->on('elastics')
+                ->onUpdate('cascade')
+                ->onDelete('set null');
+        });
     }
 
     /**

@@ -8,15 +8,14 @@ use Illuminate\Database\Eloquent\Builder;
 
 class FlashHandler extends FilterHandler
 {
+    public function __construct(Carbon $date, array $filters)
+    {
+        parent::__construct($date, $filters);
+        $this->class = FlashSession::class;
+    }
 
-	public function __construct(Carbon $date, array $filters)
-	{
-		parent::__construct($date, $filters);
-		$this->class = FlashSession::class;
-	}
-
-	protected function applyFilters(Builder $query)
-	{
-		return $query;
-	}
+    protected function applyFilters(Builder $query)
+    {
+        return $query;
+    }
 }

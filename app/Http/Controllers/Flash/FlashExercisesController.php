@@ -8,15 +8,15 @@ use App\Models\Flash\FlashSessionExercisesOrder;
 
 class FlashExercisesController extends Controller
 {
-	public function get()
-	{
-		return FlashExercise::all();
-  }
+    public function get()
+    {
+        return FlashExercise::all();
+    }
 
-	public function getExercisesOrder()
-	{
-		return FlashSessionExercisesOrder::query()
-			->orderBy("order", "asc")
-			->get();
-	}
+    public function getExercisesOrder()
+    {
+        return FlashSessionExercisesOrder::query()
+            ->orderBy('order', 'asc')
+            ->get();
+    }
 }

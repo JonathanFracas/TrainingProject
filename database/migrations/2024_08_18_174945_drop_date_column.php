@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::table("musculation_sessions_exercises", function (Blueprint $table) {
-				$table->dropColumn("date");
-			});
+        Schema::table('musculation_sessions_exercises', function (Blueprint $table) {
+            $table->dropColumn('date');
+        });
     }
 
     /**

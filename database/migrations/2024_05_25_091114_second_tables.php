@@ -11,23 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::create("flash_sessions", function (Blueprint $table) {
-				$table->id();
-				$table->integer("session_number");
-				$table->unsignedBigInteger("flash_exercise_id");
-				$table->integer("repeats");
-				$table->date("date");
+        Schema::create('flash_sessions', function (Blueprint $table) {
+            $table->id();
+            $table->integer('session_number');
+            $table->unsignedBigInteger('flash_exercise_id');
+            $table->integer('repeats');
+            $table->date('date');
 
-				$table->foreign("flash_exercise_id")
-					->references("id")->on("flash_exercises");
-			});
+            $table->foreign('flash_exercise_id')
+                ->references('id')->on('flash_exercises');
+        });
 
-			Schema::create("running_sessions", function (Blueprint $table) {
-				$table->id();
-				$table->decimal("kms");
-				$table->decimal("time");
-				$table->date("date");
-			});
+        Schema::create('running_sessions', function (Blueprint $table) {
+            $table->id();
+            $table->decimal('kms');
+            $table->decimal('time');
+            $table->date('date');
+        });
     }
 
     /**
@@ -35,8 +35,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-			Schema::dropIfExists("flash_sessions");
-			Schema::dropIfExists("running_sessions");
+        Schema::dropIfExists('flash_sessions');
+        Schema::dropIfExists('running_sessions');
 
-		}
+    }
 };

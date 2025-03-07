@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::create("elastics", function (Blueprint $table) {
-				$table->id()->index();
-				$table->string("color")->unique();
-			});
+        Schema::create('elastics', function (Blueprint $table) {
+            $table->id()->index();
+            $table->string('color')->unique();
+        });
     }
 
     /**

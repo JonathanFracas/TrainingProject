@@ -7,8 +7,8 @@ use App\Models\Musculation\BodyPartType;
 
 class BodyPartsController extends Controller
 {
-	public function get()
-	{
-		return BodyPartType::all();
-	}
+    public function get()
+    {
+        return BodyPartType::all();
+    }
 }

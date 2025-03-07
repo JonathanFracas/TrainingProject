@@ -7,29 +7,38 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * --- CHAMPS BASE DE DONNEES ---
+ *
  * @property string $id - .
  * @property string $label - .
  */
 class BodyPartType extends Model
 {
-  use HasFactory;
+    use HasFactory;
 
-	protected $table = "body_parts_types";
-	protected $primaryKey = "id";
-	public $incrementing = false;
-	protected $keyType = "string";
-	public $timestamps = false;
+    protected $table = 'body_parts_types';
 
-	/**
-	 * CONSTANTES
-	 */
+    protected $primaryKey = 'id';
 
-	public const ARM = "arm";
-	public const BACK = "back";
-	public const SHOULDER = "shoulder";
-	public const LEG = "leg";
-	public const PECTORAL = "pectoral";
-	public const ABS = "abs";
-	public const SPINAL = "spinal";
+    public $incrementing = false;
 
+    protected $keyType = 'string';
+
+    public $timestamps = false;
+
+    /**
+     * CONSTANTES
+     */
+    public const ARM = 'arm';
+
+    public const BACK = 'back';
+
+    public const SHOULDER = 'shoulder';
+
+    public const LEG = 'leg';
+
+    public const PECTORAL = 'pectoral';
+
+    public const ABS = 'abs';
+
+    public const SPINAL = 'spinal';
 }

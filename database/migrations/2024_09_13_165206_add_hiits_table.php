@@ -11,24 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-			Schema::create("hiits_types", function (Blueprint $table) {
-				$table->id()->index();
-				$table->string("label");
-			});
+        Schema::create('hiits_types', function (Blueprint $table) {
+            $table->id()->index();
+            $table->string('label');
+        });
 
-			Schema::create("hiits_sessions", function (Blueprint $table) {
-				$table->id()->index();
-				$table->date("date");
-				$table->integer("repeats");
-				$table->decimal("timer");
-				$table->decimal("high_intensity");
-				$table->decimal("recovery");
+        Schema::create('hiits_sessions', function (Blueprint $table) {
+            $table->id()->index();
+            $table->date('date');
+            $table->integer('repeats');
+            $table->decimal('timer');
+            $table->decimal('high_intensity');
+            $table->decimal('recovery');
 
-				$table->unsignedBigInteger("hiit_type_id");
+            $table->unsignedBigInteger('hiit_type_id');
 
-				$table->foreign("hiit_type_id")
-					->references("id")->on("hiits_types");
-			});
+            $table->foreign('hiit_type_id')
+                ->references('id')->on('hiits_types');
+        });
     }
 
     /**
