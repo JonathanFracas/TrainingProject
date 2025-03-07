@@ -1,6 +1,3 @@
-import * as React from 'react';
-import FlashExercises from "@/Pages/Exercises/List/FlashExercises";
-
 
 export interface RawFlashExercise
 {

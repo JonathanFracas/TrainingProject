@@ -9,7 +9,7 @@ export default class MusculationExercisesController
 
 	public static async get(body_part: string): Promise<MusculationExercise[]>
 	{
-		let musculationExercises: MusculationExercise[] = [];
+		const musculationExercises: MusculationExercise[] = [];
 
 		const response = await axios.get<RawMusculationExercise[]>(`/api/musculationExercise/get/${body_part}`);
 

@@ -1,10 +1,7 @@
 import BodyPartType from "@/Models/Musculation/BodyPartType";
 import axios from "axios";
 import MusculationSessionExercise, {RawMusculationSessionExercise} from "@/Models/Musculation/MusculationSessionExercise";
-import LastMusculationsSession from "@/Models/Musculation/LastMusculationsSession";
-import MusculationExercise from "@/Models/Musculation/MusculationExercise";
 import dayjs from "dayjs";
-import bodyPartType from "@/Models/Musculation/BodyPartType";
 
 
 export default class MusculationSessionsController
@@ -27,12 +24,12 @@ export default class MusculationSessionsController
 
 	public static async copyLastSession(body_part_id: string): Promise<MusculationSessionExercise[]>
 	{
-		let musculationSessionExercises: MusculationSessionExercise[] = [];
+		const musculationSessionExercises: MusculationSessionExercise[] = [];
 
 		const response = await axios.get<RawMusculationSessionExercise[]>(`/api/musculationSession/copyLastSession/${body_part_id}`);
 
 		response.data.forEach((musculationSessionExercise) => {
-			let sessionExercise = (new MusculationSessionExercise()).parse(musculationSessionExercise);
+			const sessionExercise = (new MusculationSessionExercise()).parse(musculationSessionExercise);
 			sessionExercise.date = new Date();
 			musculationSessionExercises.push(sessionExercise);
 		});
@@ -42,11 +39,11 @@ export default class MusculationSessionsController
 
 	public static async copyBySessionNumber(sessionNumber: number): Promise<{exercises: MusculationSessionExercise[], body_part: BodyPartType}>
 	{
-		let musculationSessionExercises: MusculationSessionExercise[] = [];
+		const musculationSessionExercises: MusculationSessionExercise[] = [];
 		const response = await axios.get(`/api/musculationSession/copyBySessionNumber/${sessionNumber}`);
 
 		response.data.exercises.forEach((musculationSessionExercise: RawMusculationSessionExercise) => {
-			let sessionExercise = (new MusculationSessionExercise()).parse(musculationSessionExercise);
+			const sessionExercise = (new MusculationSessionExercise()).parse(musculationSessionExercise);
 			sessionExercise.date = new Date();
 			musculationSessionExercises.push(sessionExercise);
 		});

@@ -8,7 +8,7 @@ export default class FlashExercisesController
 
 	public static async get(): Promise<FlashExercise[]>
 	{
-		let flashExercises: FlashExercise[] = [];
+		const flashExercises: FlashExercise[] = [];
 		const response = await axios.get<RawFlashExercise[]>(`/api/flashExercises/get/`);
 
 		response.data.forEach((flashExercise) => {
@@ -20,7 +20,7 @@ export default class FlashExercisesController
 
 	public static async getExercisesOrder(): Promise<FlashSessionExercisesOrder[]>
 	{
-		let flashSessionExercisesOrders: FlashSessionExercisesOrder[] = [];
+		const flashSessionExercisesOrders: FlashSessionExercisesOrder[] = [];
 
 		const response = await axios.get<RawFlashSessionExercisesOrder[]>(`/api/flashExercises/getExercisesOrder/`);
 

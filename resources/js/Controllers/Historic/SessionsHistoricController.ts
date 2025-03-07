@@ -1,12 +1,12 @@
 import axios from "axios";
 import {SessionsHistoricFilter} from "@/Pages/Historic/SessionsHistoric";
 import dayjs from "dayjs";
-import MusculationSession, {RawMusculationsSession} from "@/Models/Musculation/MusculationSession";
-import RunningSession, {RawRunningSession} from "@/Models/Distance/RunningSession";
-import FlashSession, {RawFlashSession} from "@/Models/Flash/FlashSession";
-import BikeSession, {RawBikeSession} from "@/Models/Distance/BikeSession";
-import HiitSession, {RawHiitSession} from "@/Models/Hiit/HiitSession";
-import SportSession, {RawSportSession} from "@/Models/Sport/SportSession";
+import MusculationSession from "@/Models/Musculation/MusculationSession";
+import RunningSession from "@/Models/Distance/RunningSession";
+import FlashSession from "@/Models/Flash/FlashSession";
+import BikeSession from "@/Models/Distance/BikeSession";
+import HiitSession from "@/Models/Hiit/HiitSession";
+import SportSession from "@/Models/Sport/SportSession";
 
 
 export default class SessionsHistoricController
@@ -24,7 +24,7 @@ export default class SessionsHistoricController
 		return response.data;
 	}
 
-	private static parseSessions<T extends  Parsable<T, R>, R>(data: R[], sessionClass: { new(): T}): T[]
+	private static parseSessions<T extends Parsable<T, R>, R>(data: R[], sessionClass: { new(): T}): T[]
 	{
 		return data.map(item => (new sessionClass()).parse(item));
 	}

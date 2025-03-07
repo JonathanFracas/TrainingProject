@@ -1,6 +1,3 @@
-import * as React from 'react';
-
-
 export interface RawDistanceSession
 {
 	id: number;

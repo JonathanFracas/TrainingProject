@@ -1,5 +1,3 @@
-import MusculationSessionExercise from "@/Models/Musculation/MusculationSessionExercise";
-import FlashSession from "@/Models/Flash/FlashSession";
 import axios from "axios";
 import FlashSessionExercise from "@/Models/Flash/FlashSessionExercise";
 

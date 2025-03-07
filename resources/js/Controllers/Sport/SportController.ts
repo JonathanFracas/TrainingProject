@@ -1,9 +1,5 @@
-import ExerciseType, {RawExerciseType} from "@/Models/Musculation/ExerciseType";
 import axios from "axios";
-import HiitType, {RawHiitType} from "@/Models/Hiit/HiitType";
-import MusculationExercise from "@/Models/Musculation/MusculationExercise";
-import HiitSession from "@/Models/Hiit/HiitSession";
-import dayjs from "dayjs";
+import HiitType from "@/Models/Hiit/HiitType";
 import SportType, {RawSportType} from "@/Models/Sport/SportType";
 import SportSession from "@/Models/Sport/SportSession";
 
@@ -12,7 +8,7 @@ export default class SportController
 {
 	public static async getSportTypes(): Promise<HiitType[]>
 	{
-		let sportTypes: SportType[] = [];
+		const sportTypes: SportType[] = [];
 		const response = await axios.get<RawSportType[]>(`/api/sport/getSportTypes/`);
 
 		response.data.forEach((sportType) => {

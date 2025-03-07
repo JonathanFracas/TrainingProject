@@ -1,4 +1,3 @@
-import * as React from 'react';
 import FlashSessionExercise, {RawFlashSessionExercise} from "@/Models/Flash/FlashSessionExercise";
 
 

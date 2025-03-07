@@ -7,7 +7,7 @@ export default class BodyPartsController
 
 	public static async get(): Promise<BodyPartType[]>
 	{
-		let bodyParts: BodyPartType[] = [];
+		const bodyParts: BodyPartType[] = [];
 
 		const response = await axios.get<RawBodyPartType[]>(`/api/bodyPart/get/`);
 
