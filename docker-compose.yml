@@ -1,0 +1,70 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: laravel_app
+        ports:
+            - "8000:8000"
+        volumes:
+            - .:/var/www/html
+            - /var/www/html/vendor
+        depends_on:
+            - postgres
+        environment:
+            - DB_CONNECTION=pgsql
+            - DB_HOST=postgres
+            - DB_PORT=5432
+            - DB_DATABASE=trainingdb
+            - DB_USERNAME=user
+            - DB_PASSWORD=password
+        networks:
+            - laravel-network
+
+    postgres:
+        image: postgres:13
+        container_name: laravel_postgres
+        ports:
+            - "5432:5432"
+        environment:
+            POSTGRES_DB: trainingdb
+            POSTGRES_USER: user
+            POSTGRES_PASSWORD: password
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        networks:
+            - laravel-network
+
+    node:
+        image: node:18
+        container_name: laravel_node
+        working_dir: /var/www/html
+        volumes:
+            - .:/var/www/html
+        command: bash -c "npm install && npm run dev"
+        ports:
+            - "5173:5173"  # Port pour Vite
+        depends_on:
+            - app
+        networks:
+            - laravel-network
+
+    pgadmin:
+        image: dpage/pgadmin4
+        container_name: laravel_pgadmin
+        environment:
+            PGADMIN_DEFAULT_EMAIL: admin@admin.com  # Email de connexion
+            PGADMIN_DEFAULT_PASSWORD: admin           # Mot de passe de connexion
+        ports:
+            - "5050:80"  # Expose pgAdmin sur le port 5050
+        depends_on:
+            - postgres
+        networks:
+            - laravel-network
+
+volumes:
+    postgres_data:
+
+networks:
+    laravel-network:
+        driver: bridge
